@@ -1,5 +1,6 @@
+#include "shopping.h"
+
 #include <iostream>
-#include "./shopping.h"
 
 // Push Goods object to shopping_list_ vector
 void Shopping::PushList(Goods object) {
@@ -23,39 +24,43 @@ void Shopping::PrintList() {
 // Sort shopping_list_ Elements by Price
 // Apply Selection Sort algorithm
 void Shopping::SortByPrice() {
-  std::vector<Goods>::iterator p = shopping_list_.begin();
-  std::vector<Goods>::iterator min = shopping_list_.end();
-  for (std::vector<Goods>::iterator i = shopping_list_.begin();
-      i != shopping_list_.end()-1; i++) {
-    for (std::vector<Goods>::iterator j = i; j != shopping_list_.end(); j++) {
-      if (min == shopping_list_.end()) {
-        min = j;
-        continue;
-      }
-      if (min->GetPrice() > j->GetPrice()) {
-        min = j;
-      }
-    }
-    std::iter_swap(i, min);
-    min = shopping_list_.end();
-  }
+  SortBy_(PRICE);
 }
 
 // Sort shopping_list_ Elements by Index
 // Apply Selection Sort algorithm
 void Shopping::SortByIndex() {
+  SortBy_(INDEX);
+}
+
+// Sort shopping_list_ Elements by Index
+// Apply Selection Sort algorithm
+void Shopping::SortBy_(SortType sortType);
   std::vector<Goods>::iterator p = shopping_list_.begin();
   std::vector<Goods>::iterator min = shopping_list_.end();
-  for (std::vector<Goods>::iterator i = shopping_list_.begin();
-      i != shopping_list_.end()-1; i++) {
+  for (std::vector<Goods>::iterator i = shopping_list_.begin(); 
+    i != shopping_list_.end()-1; i++) {
     for (std::vector<Goods>::iterator j = i; j != shopping_list_.end(); j++) {
       if (min == shopping_list_.end()) {
         min = j;
         continue;
       }
-      if (min->GetIndex() > j->GetIndex()) {
-        min = j;
+
+      switch(sortType) {
+        case INDEX:
+          if (min->GetIndex() > j->GetIndex()) {
+            min = j;
+          }
+          break;
+        case PRICE:
+          if (min->GetPrice() > j->GetPrice()) {
+            min = j;
+          }
+          break;
+        default:
+          ;
       }
+
     }
     std::iter_swap(i, min);
     min = shopping_list_.end();

@@ -1,8 +1,9 @@
-#ifndef SHOPPING_H_
-#define SHOPPING_H_
+#ifndef PROJECT2_SHOPPING_H_
+#define PROJECT2_SHOPPING_H_
+
+#include "goods.h"
 
 #include <vector>
-#include "./goods.h"
 
 // Shopping class presents List of shopping.
 // Example:
@@ -22,7 +23,14 @@ class Shopping{
   void SortByIndex();
 
  private:
+  enum SortType {
+    INDEX,
+    PRICE,
+  }
+  
+  void SortBy_(SortType sortType);
+
   std::vector<Goods> shopping_list_;
 };
 
-#endif  // SHOPPING_H_
+#endif  // PROJECT2_SHOPPING_H_

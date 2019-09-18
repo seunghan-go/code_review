@@ -1,4 +1,4 @@
-#include "./goods.h"
+#include "goods.h"
 
 // Set member variable of goods with given index and price values
 void Goods::SetGoodsInfo(int index, int price) {

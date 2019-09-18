@@ -1,5 +1,5 @@
-#ifndef GOODS_H_
-#define GOODS_H_
+#ifndef PROJECT2_GOODS_H_
+#define PROJECT2_GOODS_H_
 
 // Goods class for representing goods information with index and price
 // Example:
@@ -8,6 +8,11 @@
 //    std::cout << test.GetIndex() << " - " << test.GetPrice << endl;
 class Goods{
  public:
+  Goods(int index, int price) {
+    goods_index_ = index;
+    goods_price_ = price;
+  }
+  
   void SetGoodsInfo(int index, int price);
   int GetIndex();
   int GetPrice();
@@ -18,4 +23,4 @@ class Goods{
 };
 
 
-#endif  // GOODS_H_
+#endif  // PROJECT2_GOODS_H_
